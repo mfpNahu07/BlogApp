@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "641698303021",
+    "project_id": "blogapp-a4b2b",
+    "storage_bucket": "blogapp-a4b2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641698303021:android:1979366317a5a1c622fca4",
+        "android_client_info": {
+          "package_name": "com.nahuel.blogapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641698303021-62am0bior91qggvpjiod20ov9au6uocv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtXFybnpyERTwsH86OPpWvGoxxJi1IFWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641698303021-62am0bior91qggvpjiod20ov9au6uocv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
