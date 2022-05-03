@@ -10,8 +10,8 @@ import com.nahuel.blogapp.R
 import com.nahuel.blogapp.core.Resource
 import com.nahuel.blogapp.data.remote.home.HomeScreenDataSource
 import com.nahuel.blogapp.databinding.FragmentHomeScreenBinding
-import com.nahuel.blogapp.presentation.HomeScreenViewModel
-import com.nahuel.blogapp.presentation.HomeScreenViewModelFactory
+import com.nahuel.blogapp.presentation.main.HomeScreenViewModel
+import com.nahuel.blogapp.presentation.main.HomeScreenViewModelFactory
 import com.nahuel.blogapp.repository.home.HomeScreenRepoImpl
 import com.nahuel.blogapp.ui.home.adapter.HomeScreenAdapter
 

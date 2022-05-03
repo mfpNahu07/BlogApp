@@ -1,4 +1,4 @@
-package com.nahuel.blogapp.presentation
+package com.nahuel.blogapp.presentation.main
 
 
 import androidx.lifecycle.ViewModel
