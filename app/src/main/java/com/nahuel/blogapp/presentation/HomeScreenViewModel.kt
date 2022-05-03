@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.nahuel.blogapp.core.Resource
-import com.nahuel.blogapp.repository.HomeScreenRepo
+import com.nahuel.blogapp.repository.home.HomeScreenRepo
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 

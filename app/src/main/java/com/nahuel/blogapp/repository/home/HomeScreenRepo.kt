@@ -1,4 +1,4 @@
-package com.nahuel.blogapp.repository
+package com.nahuel.blogapp.repository.home
 
 import com.nahuel.blogapp.core.Resource
 import com.nahuel.blogapp.data.model.Post

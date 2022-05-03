@@ -1,4 +1,4 @@
-package com.nahuel.blogapp.data.remote
+package com.nahuel.blogapp.data.remote.home
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nahuel.blogapp.core.Resource
