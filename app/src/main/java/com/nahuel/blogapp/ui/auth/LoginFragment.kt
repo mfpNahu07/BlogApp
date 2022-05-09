@@ -2,9 +2,7 @@ package com.nahuel.blogapp.ui.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.nahuel.blogapp.R
 import com.nahuel.blogapp.core.Resource
-import com.nahuel.blogapp.data.remote.auth.LoginDataSource
+import com.nahuel.blogapp.data.remote.auth.AuthDataSource
 import com.nahuel.blogapp.databinding.FragmentLoginBinding
 import com.nahuel.blogapp.presentation.auth.LoginScreenViewModel
-import com.nahuel.blogapp.presentation.auth.LoginScreenViewModelFactory
-import com.nahuel.blogapp.repository.auth.LoginRepoImpl
+import com.nahuel.blogapp.presentation.auth.AuthViewModelFactory
+import com.nahuel.blogapp.repository.auth.AuthRepoImpl
 
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -24,9 +22,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val viewModel by viewModels<LoginScreenViewModel> {
-        LoginScreenViewModelFactory(
-            LoginRepoImpl(
-                LoginDataSource()
+        AuthViewModelFactory(
+            AuthRepoImpl(
+                AuthDataSource()
             )
         )
     }
