@@ -1,10 +1,15 @@
 package com.nahuel.blogapp.data.remote.auth
 
+import android.graphics.Bitmap
+import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.nahuel.blogapp.data.model.User
 import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
 
 class AuthDataSource {
 
@@ -21,6 +26,22 @@ class AuthDataSource {
            FirebaseFirestore.getInstance().collection("users").document(uid).set(User(username,email,"photourl.png")).await()
        }
        return authResult.user
+    }
+
+    suspend fun updateUserProfile(imageBitmap: Bitmap, username:String){
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val imageRef = FirebaseStorage.getInstance().reference.child("${user?.uid}/profile_picture")
+        val baos = ByteArrayOutputStream()
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
+        //Cargamos la foto en Firebase y aguardamos a que la foto se cargue, luego obtenemos la url de descarga
+        val downloadUrl = imageRef.putBytes(baos.toByteArray()).await().storage.downloadUrl.await().toString()
+
+        val profileUpdates =  UserProfileChangeRequest.Builder()
+            .setDisplayName(username)
+            .setPhotoUri(Uri.parse(downloadUrl))
+            .build()
+        user?.updateProfile(profileUpdates)?.await()
     }
 
 

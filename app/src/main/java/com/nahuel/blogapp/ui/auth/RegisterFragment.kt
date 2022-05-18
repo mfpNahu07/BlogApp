@@ -14,8 +14,9 @@ import com.nahuel.blogapp.R
 import com.nahuel.blogapp.core.Resource
 import com.nahuel.blogapp.data.remote.auth.AuthDataSource
 import com.nahuel.blogapp.databinding.FragmentRegisterBinding
+import com.nahuel.blogapp.presentation.auth.AuthViewModel
 import com.nahuel.blogapp.presentation.auth.AuthViewModelFactory
-import com.nahuel.blogapp.presentation.auth.LoginScreenViewModel
+//import com.nahuel.blogapp.presentation.auth.LoginScreenViewModel
 import com.nahuel.blogapp.repository.auth.AuthRepoImpl
 
 
@@ -23,7 +24,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
 
     private lateinit var binding: FragmentRegisterBinding
-    private val viewModel by viewModels<LoginScreenViewModel> {
+    private val viewModel by viewModels<AuthViewModel> {
         AuthViewModelFactory(
             AuthRepoImpl(
                 AuthDataSource()
@@ -67,7 +68,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
                 is Resource.Succcess -> {
                     binding.progressBar.visibility = View.GONE
-                    findNavController().navigate(R.id.action_registerFragment_to_homeScreenFragment)
+                    findNavController().navigate(R.id.action_registerFragment_to_setUpProfileFragment)
                 }
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.GONE

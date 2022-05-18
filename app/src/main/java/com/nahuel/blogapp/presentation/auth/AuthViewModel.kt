@@ -1,5 +1,6 @@
 package com.nahuel.blogapp.presentation.auth
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
@@ -8,7 +9,8 @@ import com.nahuel.blogapp.repository.auth.AuthRepo
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
-class LoginScreenViewModel(private val repo: AuthRepo) : ViewModel() {
+class AuthViewModel(private val repo: AuthRepo) : ViewModel() {
+    //antes class LoginScreenViewModel
 
     fun signIn(email: String, password: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
@@ -23,6 +25,15 @@ class LoginScreenViewModel(private val repo: AuthRepo) : ViewModel() {
         emit(Resource.Loading())
         try {
             emit(Resource.Succcess(repo.signUp(email, password, username)))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
+    fun updateUserProfile(imageBitmap : Bitmap, username : String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Succcess(repo.updateProfile(imageBitmap,username)))
         } catch (e: Exception) {
             emit(Resource.Failure(e))
         }

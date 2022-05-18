@@ -12,7 +12,8 @@ import com.nahuel.blogapp.R
 import com.nahuel.blogapp.core.Resource
 import com.nahuel.blogapp.data.remote.auth.AuthDataSource
 import com.nahuel.blogapp.databinding.FragmentLoginBinding
-import com.nahuel.blogapp.presentation.auth.LoginScreenViewModel
+import com.nahuel.blogapp.presentation.auth.AuthViewModel
+//import com.nahuel.blogapp.presentation.auth.LoginScreenViewModel
 import com.nahuel.blogapp.presentation.auth.AuthViewModelFactory
 import com.nahuel.blogapp.repository.auth.AuthRepoImpl
 
@@ -21,7 +22,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding: FragmentLoginBinding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val viewModel by viewModels<LoginScreenViewModel> {
+    private val viewModel by viewModels<AuthViewModel> {
         AuthViewModelFactory(
             AuthRepoImpl(
                 AuthDataSource()
