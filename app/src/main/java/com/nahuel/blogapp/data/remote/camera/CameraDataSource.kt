@@ -27,7 +27,8 @@ class CameraDataSource {
                         profile_name = displayName,
                         profile_picture = it.photoUrl.toString(),
                         post_image = downloadUrl,
-                        post_description = description
+                        post_description = description,
+                        uid = user.uid
                     ))
             }
         }

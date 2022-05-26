@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nahuel.blogapp.core.BaseViewHolder
+import com.nahuel.blogapp.core.TimeAgo
 import com.nahuel.blogapp.data.model.Post
 import com.nahuel.blogapp.databinding.PostItemViewBinding
 
@@ -44,8 +45,15 @@ class HomeScreenAdapter(private val postList: List<Post>) :
                 binding.postDescription.text = item.post_description
             }
 
-            binding.postTimestamp.text = "Hace 2 horas"
+
+            //Obtenemos el tiempo del servidor, lo transformo a time( milisegundos) y lo divido en 1000 para obtener los segundos
+            val createdAt = (item.created_at?.time?.div(1000L))?.let {
+                TimeAgo.getTimeAgo(it.toInt())
+            }
+            binding.postTimestamp.text = createdAt
         }
     }
 
 }
+
+//Encargado de recibir cada uno de los posts
