@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.nahuel.blogapp.data.model.Post
+import com.nahuel.blogapp.data.model.Poster
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -24,12 +25,16 @@ class CameraDataSource {
             it.displayName?.let { displayName ->
                 FirebaseFirestore.getInstance().collection("posts").add(
                     Post(
-                        profile_name = displayName,
-                        profile_picture = it.photoUrl.toString(),
+                        poster = Poster(
+                            username = displayName,
+                            uid = user.uid,
+                            profile_picture = it.photoUrl.toString()
+                        ),
                         post_image = downloadUrl,
                         post_description = description,
-                        uid = user.uid
-                    ))
+                        likes = 0
+                    )
+                )
             }
         }
     }
