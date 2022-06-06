@@ -8,4 +8,6 @@ class HomeScreenRepoImpl(private val dataSource: HomeScreenDataSource) : HomeScr
     override suspend fun getLatestPosts(): Resource<List<Post>> =
         dataSource.getLatestPost()
 
+    override suspend fun registerLikeButtonState(postId: String, liked: Boolean) = dataSource.registerLikeButtonState(postId,liked)
+
 }

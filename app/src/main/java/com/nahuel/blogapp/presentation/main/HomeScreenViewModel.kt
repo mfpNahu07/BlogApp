@@ -4,10 +4,12 @@ package com.nahuel.blogapp.presentation.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.nahuel.blogapp.core.Resource
 import com.nahuel.blogapp.repository.home.HomeScreenRepo
 import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
+//
+import kotlin.Exception
 
 class HomeScreenViewModel(private val repo: HomeScreenRepo) : ViewModel() {
 
@@ -21,6 +23,18 @@ class HomeScreenViewModel(private val repo: HomeScreenRepo) : ViewModel() {
 
     }
 
+    fun registerLikeButtonState(postId: String, liked: Boolean) = liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
+        emit( Resource.Loading())
+
+
+        kotlin.runCatching {
+            repo.registerLikeButtonState(postId,liked)
+        }.onSuccess {  postList ->
+            emit(Resource.Succcess(Unit))
+        }.onFailure {  throwable ->
+            emit(Resource.Failure(Exception(throwable.message)))
+        }
+    }
 }
 
 //Creamos una instancia del ViewModel a través de la implementación concreta de donde esta

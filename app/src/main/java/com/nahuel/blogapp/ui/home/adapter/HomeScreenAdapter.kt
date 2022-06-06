@@ -51,6 +51,7 @@ class HomeScreenAdapter(private val postList: List<Post>, private val onPostClic
             setupPostDescription(item)
             tintHeartIcon(item)
             setupLikeCount(item)
+            setLikeClickAction(item)
 
         }
 
