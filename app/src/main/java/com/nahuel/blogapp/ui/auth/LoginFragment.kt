@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.nahuel.blogapp.R
 import com.nahuel.blogapp.core.Resource
+import com.nahuel.blogapp.core.hideKeyboard
 import com.nahuel.blogapp.data.remote.auth.AuthDataSource
 import com.nahuel.blogapp.databinding.FragmentLoginBinding
 import com.nahuel.blogapp.presentation.auth.AuthViewModel
@@ -53,6 +54,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun doLogin() {
         binding.btnSignIn.setOnClickListener {
+            it.hideKeyboard()
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
             validateCredentials(email, password)

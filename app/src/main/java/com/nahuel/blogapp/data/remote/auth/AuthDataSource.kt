@@ -23,7 +23,7 @@ class AuthDataSource {
    suspend fun signUp(email: String, password: String, username: String): FirebaseUser? {
        val authResult = FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).await()
        authResult.user?.uid?.let { uid ->
-           FirebaseFirestore.getInstance().collection("users").document(uid).set(User(username,email,"photourl.png")).await()
+           FirebaseFirestore.getInstance().collection("users").document(uid).set(User(username,email)).await()
        }
        return authResult.user
     }
@@ -37,7 +37,7 @@ class AuthDataSource {
         //Cargamos la foto en Firebase y aguardamos a que la foto se cargue, luego obtenemos la url de descarga
         val downloadUrl = imageRef.putBytes(baos.toByteArray()).await().storage.downloadUrl.await().toString()
 
-        val profileUpdates =  UserProfileChangeRequest.Builder()
+        val profileUpdates =  UserProfileChangeRequest.Builder() //Se guardan los datos en el usuario (token de autenticacion), no en la base de datos
             .setDisplayName(username)
             .setPhotoUri(Uri.parse(downloadUrl))
             .build()
